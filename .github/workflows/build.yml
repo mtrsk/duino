@@ -1,0 +1,42 @@
+name: Build Project (State Machine)
+
+on:
+  pull_request:
+    paths:
+      - '.github'
+      - 'state-machine/include/**'
+      - 'state-machine/lib/**'
+      - 'state-machine/src/**'
+  push:
+    branches:
+      - master
+    paths:
+      - '.github'
+      - 'state-machine/include/**'
+      - 'state-machine/lib/**'
+      - 'state-machine/src/**'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          # Mostly to avoid GitHub rate limiting
+          extra_nix_config: |
+            access-tokens = github.com=${{ github.token }}
+
+      - name: Install Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+
+      - name: Build
+        run: |
+          nix develop .#ci --impure -c make -C state-machine build
+
