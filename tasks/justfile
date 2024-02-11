@@ -1,0 +1,42 @@
+target := env_var_or_default("TARGET", "uno")
+
+default:
+  just --list
+
+# Updates all projet's dependencies
+deps:
+    @pio pkg update -e "{{target}}"
+
+# Leverages Platform.io builds, targeting Arduino by default
+build:
+    @pio -f -c vim run -c platformio.ini -e "{{target}}"
+
+# Runs a linter into the codebase
+check:
+	@find . -regex '.*\.\(cpp\|hpp\)' -exec clang-tidy --config-file=../.clang-tidy {} \;
+
+# Builds a release version of the project
+release:
+	@pio -f -c vim run -c platformio.ini -e "{{target}}_release"
+
+# Uploads the release
+upload:
+	@pio run -e uno -t upload -e "{{target}}"
+
+# Cleans the environment
+clean:
+	@pio run --target clean -e "{{target}}"
+
+# Format source code
+format:
+	@find . -regex '.*\.\(cpp\|hpp\)' -exec clang-format -style=file -i {} \;
+
+# Debug mode
+debug:
+	@pio debug --interface=gdb -e "{{target}}"
+
+# Monitor the serial output
+monitor:
+	@pio device monitor -e "{{target}}"
+
+
