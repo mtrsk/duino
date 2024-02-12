@@ -9,18 +9,14 @@ PushButton button(BUTTON_PIN);
 Led led(LED_BUILTIN);
 
 State state = State::Init;
+Event event = Event::Started;
 
 void setup() {
   state_init();
   button.init();
   led.init();
-  state = State::Idle;
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(5000);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(5000);
 }
 

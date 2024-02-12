@@ -11,7 +11,7 @@ enum class State {
 
 // Events that can trigger state transitions
 enum class Event {
-    Start,
+    Started,
     ButtonPushed,
     PotentiometerChanged,
     LedChanged,
@@ -38,5 +38,8 @@ void state_init();
 void state_idle();
 void state_led_on();
 void state_led_off();
+
+// The State Machine
+void run(State &state, Event &event, const Command transitions[], const Update updates[]);
 
 #endif
