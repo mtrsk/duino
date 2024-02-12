@@ -1,3 +1,6 @@
+#ifndef PUSH_BUTTON_HPP
+#define PUSH_BUTTON_HPP
+
 #include <Arduino.h>
 
 class PushButton
@@ -12,3 +15,5 @@ class PushButton
 
         byte readState();
 };
+
+#endif

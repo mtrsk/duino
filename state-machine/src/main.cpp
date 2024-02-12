@@ -1,18 +1,20 @@
 #include <Arduino.h>
-#include "constants.h"
-#include "led.h"
-#include "push_button.h"
-#include "state.h"
+#include "constants.hpp"
+#include "led.hpp"
+#include "push_button.hpp"
+#include "state.hpp"
 
+// Global variables
 PushButton button(BUTTON_PIN);
 Led led(LED_BUILTIN);
 
+State state = State::Init;
+
 void setup() {
-  Serial.begin(SERIAL_BAUD_RATE);
-  Serial.println("Starting Arduino...");
-  Serial.setTimeout(10);
-  pinMode(LED_BUILTIN, OUTPUT);
-  led_init();
+  state_init();
+  button.init();
+  led.init();
+  state = State::Idle;
 }
 
 void loop() {

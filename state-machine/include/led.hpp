@@ -1,3 +1,6 @@
+#ifndef LED_HPP
+#define LED_HPP
+
 #include <Arduino.h>
 
 class Led
@@ -13,3 +16,5 @@ class Led
 
         void off();
 };
+
+#endif

@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "push_button.h"
+#include "push_button.hpp"
 
 PushButton::PushButton (byte pin) {
     this->pin = pin;
