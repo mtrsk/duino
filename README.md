@@ -12,4 +12,15 @@ Playing with arduino in C++ (and maybe Rust), also Nix.
 nix develop --impure
 ```
 
-## Building
+## Building & Uploading
+
+```shell
+make build
+make upload
+```
+
+## Debugging
+
+```shell
+make monitor
+```
