@@ -1,6 +1,8 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
+#include <Arduino.h>
+
 // The states the system can be in
 enum class State {
   Init,
