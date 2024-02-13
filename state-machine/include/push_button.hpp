@@ -3,17 +3,17 @@
 
 #include <Arduino.h>
 
-class PushButton
-{
-    private:
-        byte pin;
-        byte state;
-    public:
-        PushButton(byte pin);
+class PushButton {
+private:
+  byte pin;
+  byte state;
 
-        void init();
+public:
+  PushButton(byte pin);
 
-        byte readState();
+  void init();
+
+  byte readState();
 };
 
 #endif

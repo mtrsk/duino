@@ -3,18 +3,18 @@
 
 #include <Arduino.h>
 
-class Led
-{
-    private:
-        byte pin;
-    public:
-        Led(byte pin);
+class Led {
+private:
+  byte pin;
 
-        void init();
+public:
+  Led(byte pin);
 
-        void on();
+  void init();
 
-        void off();
+  void on();
+
+  void off();
 };
 
 #endif
