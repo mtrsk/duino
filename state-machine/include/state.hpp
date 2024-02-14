@@ -1,6 +1,8 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
+#include "led.hpp"
+#include "push_button.hpp"
 #include <Arduino.h>
 
 // The states the system can be in
@@ -37,7 +39,7 @@ typedef struct {
 
 // Function prototypes
 // STATE PROTOTYPES
-void state_init();
+void state_init(PushButton &button, Led &led);
 void state_idle();
 void state_led_turned_on();
 void state_led_turned_off();

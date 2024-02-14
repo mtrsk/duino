@@ -3,7 +3,10 @@
 
 Led::Led(byte pin) { this->pin = pin; }
 
-void Led::init() { pinMode(pin, OUTPUT); }
+void Led::init() {
+  Serial.println("Initializing LED");
+  pinMode(pin, OUTPUT);
+}
 
 void Led::on() { digitalWrite(pin, HIGH); }
 

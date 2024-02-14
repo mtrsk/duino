@@ -1,13 +1,17 @@
 #include "state.hpp"
 #include "constants.hpp"
+#include "led.hpp"
+#include "push_button.hpp"
 #include <Arduino.h>
 
 // STATE FUNCTIONS
 // Initialization of the whole system
-void state_init() {
+void state_init(PushButton &button, Led &led) {
   Serial.begin(SERIAL_BAUD_RATE);
   Serial.println("Starting Arduino...");
   Serial.setTimeout(10);
+  button.init();
+  led.init();
 };
 
 // Doing nothing
