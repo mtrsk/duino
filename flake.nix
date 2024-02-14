@@ -60,6 +60,7 @@
                   gnumake
                   picocom
                   platformio
+                  valgrind
                 ];
 
                 enterShell = ''

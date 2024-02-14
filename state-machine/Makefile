@@ -12,6 +12,9 @@ clean:
 format:
 	@find . -regex '.*\.\(cpp\|hpp\)' -exec clang-format -style=file -i {} \;
 
+debug:
+	@pio debug --interface=gdb
+
 # Monitor the serial output.
 monitor:
 	@pio device monitor 

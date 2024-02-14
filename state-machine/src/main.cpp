@@ -5,7 +5,7 @@
 #include <Arduino.h>
 
 // STATE -> EVENT -> STATE
-const Command transitions[] = {
+inline Command transitions[] = {
     {State::Init, Event::Started, State::Idle},
     {State::Idle, Event::ButtonPushed, State::LedOn},
     {State::LedOn, Event::LedChanged, State::LedOff},
@@ -14,7 +14,7 @@ const Command transitions[] = {
 const size_t transitions_size = sizeof(transitions) / sizeof(transitions[0]);
 
 // STATE x FUNCTION
-static Update updates[] = {
+inline Update updates[] = {
     {State::Init, &state_init},
     {State::Idle, &state_idle},
     {State::LedOn, &state_led_turned_on},

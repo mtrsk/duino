@@ -3,9 +3,13 @@
 
 PushButton::PushButton(byte pin) { this->pin = pin; };
 
-void PushButton::init() { pinMode(pin, INPUT_PULLUP); };
+void PushButton::init() { pinMode(pin, INPUT); };
 
-byte PushButton::readState() {
+byte PushButton::read() {
   this->state = digitalRead(pin);
   return state;
+};
+
+bool PushButton::isPressed() {
+  return (state == HIGH);
 };

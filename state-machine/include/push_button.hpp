@@ -13,7 +13,9 @@ public:
 
   void init();
 
-  byte readState();
+  byte read();
+
+  bool isPressed();
 };
 
 #endif
