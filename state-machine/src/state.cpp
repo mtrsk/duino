@@ -1,18 +1,50 @@
+#include "state.hpp"
+#include "constants.hpp"
+#include "led.hpp"
+#include "push_button.hpp"
 #include <Arduino.h>
-#include "constants.h"
-#include "state.h"
 
-// INIT FUNCTIONS
-void led_init() {
+// STATE FUNCTIONS
+// Initialization of the whole system
+void state_init(PushButton &button, Led &led) {
+  Serial.begin(SERIAL_BAUD_RATE);
+  Serial.println("Starting Arduino...");
+  Serial.setTimeout(10);
+  button.init();
+  led.init();
+};
+
+// Doing nothing
+void state_idle() { Serial.println("Idle..."); };
+
+// Some LED is turned ON
+void state_led_turned_on() {
+  Serial.println("LED is on...");
   digitalWrite(LED_BUILTIN, HIGH);
 };
 
-// STATE -> EVENT -> STATE
-static Command commands[] = {
-    { State::Init, Event::Any, State::Idle }
+// Some LED is turned OFF
+void state_led_turned_off() {
+  Serial.println("LED is off...");
+  digitalWrite(LED_BUILTIN, LOW);
 };
 
-// STATE -> FUNCTION
-static Decider decisions[] = {
-    { State::Init, &led_init },
+// State Machine
+void run(State &state, Command &command, const Transition *transitions,
+         size_t transitions_size, const Update *updates, size_t updates_size) {
+  for (size_t i = 0; i < transitions_size; ++i) {
+    if (transitions[i].curr == state && transitions[i].command == command) {
+      // Transition to the next state
+      state = transitions[i].next;
+      break;
+    }
+  }
+
+  // Execute the corresponding action for the current state
+  for (size_t i = 0; i < updates_size; ++i) {
+    if (updates[i].state == state) {
+      updates[i].func();
+      break;
+    }
+  }
 };

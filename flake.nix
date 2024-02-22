@@ -55,10 +55,12 @@
                 packages = with pkgs; [
                   arduino-cli
                   bash
+                  clang-tools
                   git
                   gnumake
                   picocom
                   platformio
+                  valgrind
                 ];
 
                 enterShell = ''

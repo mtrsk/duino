@@ -11,5 +11,17 @@ Playing with arduino in C++ (and maybe Rust), also Nix.
 ```shell
 nix develop --impure
 ```
+as of now, there's only a single `state-machine` project, so `cd state-machine`.
 
-## Building
+## Building & Uploading
+
+```shell
+make build
+make upload
+```
+
+## Debugging
+
+```shell
+make monitor
+```
