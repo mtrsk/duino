@@ -12,6 +12,8 @@ public:
 
   void init();
 
+  byte read();
+
   void on();
 
   void off();

@@ -11,21 +11,39 @@
 
   outputs = inputs@{ self, devenv, nixpkgs, ... }:
     let
-      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ];
-
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-
-      nixpkgsFor = forAllSystems (system: import nixpkgs {
+      systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      forAllSystems = f: builtins.listToAttrs (map (name: { inherit name; value = f name; }) systems);
+      mkPkgs = system: import nixpkgs {
         inherit system;
-      });
+        config = {
+          allowUnfree = true;
+        };
+      };
 
       name = "arduino";
     in
     {
       devShells = forAllSystems (system:
         let
-          pkgs = nixpkgsFor."${system}";
-          inherit (pkgs);
+          pkgs = mkPkgs system;
+
+          tools = with pkgs; [
+            arduino-cli
+            clang-tools
+            git
+            just
+            picocom
+            platformio
+          ];
+
+          development = with pkgs; [
+            valgrind
+          ];
+
+          darwinPkgs = with pkgs.darwin.apple_sdk.frameworks; [
+            CoreFoundation
+            CoreServices
+          ];
 
           arduinoShellHookPaths = ''
             if [ -z ''${XDG_CACHE_HOME:-} ]; then
@@ -44,7 +62,7 @@
           # `nix develop .#ci`
           # reduce the number of packages to the bare minimum needed for CI
           ci = pkgs.mkShell {
-            buildInputs = with pkgs; [ bash gnumake platformio ];
+            buildInputs = tools;
           };
 
           # `nix develop`
@@ -52,16 +70,17 @@
             inherit inputs pkgs;
             modules = [
               ({ pkgs, lib, ... }: {
-                packages = with pkgs; [
-                  arduino-cli
-                  bash
-                  clang-tools
-                  git
-                  gnumake
-                  picocom
-                  platformio
-                  valgrind
-                ];
+                packages =
+                  tools
+                  ++ development
+                  ++ lib.optionals pkgs.stdenv.isDarwin (darwinPkgs);
+
+                scripts = {
+                  build.exec = "just ./tasks/build";
+                  release.exec = "just ./tasks/release";
+                  upload.exec = "just ./tasks/upload";
+                  clean.exec = "just ./tasks/clean";
+                };
 
                 enterShell = ''
                   ${arduinoShellHookPaths}
@@ -69,10 +88,9 @@
                   echo "    Storing arduino-cli data for this project in '$_ARDUINO_ROOT'"
 
                   echo "==> Using platformio version $(platformio --version)"
-                '';
 
-                # looks for the .env by default
-                dotenv.enable = true;
+                  just ./tasks/
+                '';
               })
             ];
           };

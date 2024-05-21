@@ -11,17 +11,26 @@ Playing with arduino in C++ (and maybe Rust), also Nix.
 ```shell
 nix develop --impure
 ```
-as of now, there's only a single `state-machine` project, so `cd state-machine`.
+as of now, there's only a single `state-machine` project.
 
 ## Building & Uploading
 
+You can either use the scripts inside the nix development shell:
 ```shell
-make build
-make upload
+build
+release
+upload
+```
+or `cd state-machine` and use `just`:
+```shell
+just build
+just release
+just upload
 ```
 
 ## Debugging
 
 ```shell
-make monitor
+just monitor
+# or monitor
 ```

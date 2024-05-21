@@ -8,6 +8,8 @@ void Led::init() {
   pinMode(pin, OUTPUT);
 }
 
+byte Led::read() { return digitalRead(pin); }
+
 void Led::on() { digitalWrite(pin, HIGH); }
 
 void Led::off() { digitalWrite(pin, HIGH); }
