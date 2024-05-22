@@ -4,17 +4,17 @@ on:
   pull_request:
     paths:
       - '.github'
-      - 'task/include/**'
-      - 'task/lib/**'
-      - 'task/src/**'
+      - 'tasks/include/**'
+      - 'tasks/lib/**'
+      - 'tasks/src/**'
   push:
     branches:
       - master
     paths:
       - '.github'
-      - 'task/include/**'
-      - 'task/lib/**'
-      - 'task/src/**'
+      - 'tasks/include/**'
+      - 'tasks/lib/**'
+      - 'tasks/src/**'
 
 jobs:
   build:
@@ -38,5 +38,5 @@ jobs:
 
       - name: Build
         run: |
-          nix develop .#ci --impure -c just task/build
+          nix develop .#ci --impure -c just tasks/build
 
