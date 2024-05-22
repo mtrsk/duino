@@ -1,20 +1,20 @@
-name: Build Project (State Machine)
+name: Build Project (Tasks)
 
 on:
   pull_request:
     paths:
       - '.github'
-      - 'state-machine/include/**'
-      - 'state-machine/lib/**'
-      - 'state-machine/src/**'
+      - 'task/include/**'
+      - 'task/lib/**'
+      - 'task/src/**'
   push:
     branches:
       - master
     paths:
       - '.github'
-      - 'state-machine/include/**'
-      - 'state-machine/lib/**'
-      - 'state-machine/src/**'
+      - 'task/include/**'
+      - 'task/lib/**'
+      - 'task/src/**'
 
 jobs:
   build:
@@ -38,5 +38,5 @@ jobs:
 
       - name: Build
         run: |
-          nix develop .#ci --impure -c just state-machine/build
+          nix develop .#ci --impure -c just task/build
 
