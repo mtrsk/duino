@@ -4,14 +4,14 @@
 
 [![Build Project (Task)](https://github.com/mtrsk/duino/actions/workflows/build.yml/badge.svg)](https://github.com/mtrsk/duino/actions/workflows/build.yml)
 
-Playing with arduino in C++ (and maybe Rust), platform.io and Nix.
+Playing with arduino in C++ (and maybe Rust), platform.io and Nix. Also wanting to explore some embedded systems stuff, leveraging what I know about Nix.
 
 ## Developing
 
 ```shell
 nix develop --impure
 ```
-as of now, there's only a single `state-machine` project.
+as of now, there's only a single `tasks` project. But I plan to add more, increasing complexity and scope.
 
 ## Building & Uploading
 
