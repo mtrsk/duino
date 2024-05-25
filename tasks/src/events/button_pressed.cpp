@@ -14,4 +14,3 @@ void ButtonPressedEvent::exec() {
 uint32_t ButtonPressedEvent::timeOfNextCheck() {
   return DEFAULT_EVENT_WAITING_IN_MS;
 };
-

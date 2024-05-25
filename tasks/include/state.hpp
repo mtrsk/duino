@@ -5,6 +5,7 @@
 #include "potentiometer.hpp"
 #include "push_button.hpp"
 
-void state_init(Led &red, Led &yellow, Led &green, PushButton &button, Potentiometer &potentiometer);
+void state_init(Led &builtin, Led &red, Led &yellow, Led &green,
+                PushButton &button, Potentiometer &potentiometer);
 
 #endif

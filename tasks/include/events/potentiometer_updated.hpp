@@ -3,8 +3,8 @@
 
 #include "constants.hpp"
 #include "led.hpp"
-#include "push_button.hpp"
 #include "potentiometer.hpp"
+#include "push_button.hpp"
 #include <TaskManagerIO.h>
 
 class PotentiometerUpdatedEvent : public BaseEvent {

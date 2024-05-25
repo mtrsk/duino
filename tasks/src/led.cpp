@@ -14,21 +14,22 @@ byte Led::read() {
 }
 
 void Led::on() {
+  Serial.println("LED is being turned on...");
   digitalWrite(pin, HIGH);
   this->value = HIGH;
 }
 
 void Led::off() {
+  Serial.println("LED is being turned off...");
   digitalWrite(pin, HIGH);
   this->value = LOW;
 }
 
 void Led::reverse() {
+  Serial.println("SWITCHING LED...");
   if (this->value == HIGH) {
-    Serial.println("LED is being turned off...");
     off();
   } else {
-    Serial.println("LED is being turned on...");
     on();
   }
 }
@@ -37,4 +38,3 @@ void Led::set(byte value) {
   analogWrite(pin, value);
   this->value = value;
 }
-
