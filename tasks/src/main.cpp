@@ -13,17 +13,11 @@ Led red(LED_RED_PIN);
 Led yellow(LED_YELLOW_PIN);
 Led green(LED_GREEN_PIN);
 
-State state = {.red = red,
-               .green = green,
-               .yellow = yellow,
-               .button = button,
-               .potentiometer = potentiometer};
-
 // Arduino Program
 void setup() {
   Serial.println("Starting Arduino...");
-  state_init(state);
-  taskManager.schedule(repeatSeconds(1), []() { state_update_red_led(state); });
+  state_init(red, yellow, green, button, potentiometer);
+  taskManager.schedule(repeatSeconds(1), []() { state_update_led_digital(red); });
 }
 
 void loop() { taskManager.runLoop(); }

@@ -7,36 +7,27 @@
 #include <Arduino.h>
 #include <TaskManagerIO.h>
 
-typedef struct {
-  Led &red;
-  Led &green;
-  Led &yellow;
-  PushButton &button;
-  Potentiometer &potentiometer;
-} State;
-
 // Function prototypes
 // LED PROTOTYPES
-void state_init(State &state);
-void state_idle(State &state);
+void state_init(Led &red, Led &yellow, Led &green, PushButton &button, Potentiometer &potentiometer);
+void state_idle();
 
-void state_update_red_led(State &state);
-void state_update_green_led(State &state);
-void state_update_yellow_led(State &state);
+void state_update_led_digital(Led &led);
+void state_update_led_analog(Led &led);
 
 // BUTTON PROTOTYPES
-void state_press_button(State &state);
+void state_press_button(PushButton &button);
 
 // POTENTIOMETER PROTOTYPES
-void state_change_potentiometer(State &state);
+void state_change_potentiometer(Potentiometer &potentiometer);
 
 // Events
-class ButtonPressed : public BaseEvent {
+class ButtonPressedEvent : public BaseEvent {
 private:
-  State *st;
+  Led &led;
 
 public:
-  ButtonPressed(State st);
+  ButtonPressedEvent(Led led);
   void exec() override;
   uint32_t timeOfNextCheck() override;
 };

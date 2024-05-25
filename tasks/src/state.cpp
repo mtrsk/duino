@@ -6,56 +6,45 @@
 
 // STATE FUNCTIONS
 // Initialization of the whole system
-void state_init(State &state) {
+void state_init(Led &red, Led &yellow, Led &green, PushButton &button, Potentiometer &potentiometer) {
   Serial.begin(SERIAL_BAUD_RATE);
   Serial.setTimeout(10);
-  state.button.init();
-  state.red.init();
-  state.green.init();
-  state.yellow.init();
+  red.init();
+  green.init();
+  yellow.init();
+  button.init();
+  potentiometer.init();
 };
 
-// Doing nothing
-void state_idle(State &state) { Serial.println("Idle..."); };
-
-// RED LED
-void state_update_red_led(State &state) {
-  if (state.red.read() == HIGH) {
-    Serial.println("Red LED is being turned off...");
-    state.red.off();
-  } else {
-    Serial.println("Red LED is being turned on...");
-    state.red.on();
-  }
+void state_idle() {
+  Serial.println("Idle..."); 
 };
 
-// GREEN LED
-void state_update_green_led(State &state) {
-  if (state.green.read() == HIGH) {
-    Serial.println("Green LED is being turned off...");
-    state.green.off();
+// LED
+void state_update_led_digital(Led &led) {
+  if (led.read() == HIGH) {
+    Serial.println("LED is being turned off...");
+    led.off();
   } else {
-    Serial.println("Green LED is being turned on...");
-    state.green.on();
+    Serial.println("LED is being turned on...");
+    led.on();
   }
 };
 
 // YELLOW LED
-void state_update_yellow_led(State &state) {
+void state_update_led_analog(Led &led) {
   // TODO: Implement this
-  state.yellow.on();
-  Serial.println("YELLOW LED is ON...");
+  Serial.println("LED is ON...");
 };
 
 // Events
-void ButtonPressed::exec() {
+void ButtonPressedEvent::exec() {
   Serial.println("TODO...");
-  state_update_red_led(*st);
 };
 
-uint32_t ButtonPressed::timeOfNextCheck() {
+uint32_t ButtonPressedEvent::timeOfNextCheck() {
   Serial.println("TODO...");
   return millisToMicros(1000);
 };
 
-ButtonPressed::ButtonPressed(State st) { this->st = &st; }
+ButtonPressedEvent::ButtonPressedEvent(Led led) { this->led = led; }
