@@ -7,11 +7,11 @@ ButtonPressedEvent::ButtonPressedEvent(Led led, PushButton button) {
 
 void ButtonPressedEvent::exec() {
   if (this->button.isPressed()) {
-    state_update_led_digital(this->led);
+    this->led.reverse();
   };
 };
 
 uint32_t ButtonPressedEvent::timeOfNextCheck() {
-  return 1000L;
+  return DEFAULT_EVENT_WAITING_IN_MS;
 };
 

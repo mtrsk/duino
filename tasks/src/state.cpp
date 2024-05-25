@@ -2,6 +2,7 @@
 #include "constants.hpp"
 #include "led.hpp"
 #include "push_button.hpp"
+#include "potentiometer.hpp"
 #include <Arduino.h>
 
 // STATE FUNCTIONS
@@ -14,25 +15,4 @@ void state_init(Led &red, Led &yellow, Led &green, PushButton &button, Potentiom
   yellow.init();
   button.init();
   potentiometer.init();
-};
-
-void state_idle() {
-  Serial.println("Idle..."); 
-};
-
-// LED
-void state_update_led_digital(Led &led) {
-  if (led.read() == HIGH) {
-    Serial.println("LED is being turned off...");
-    led.off();
-  } else {
-    Serial.println("LED is being turned on...");
-    led.on();
-  }
-};
-
-// YELLOW LED
-void state_update_led_analog(Led &led) {
-  // TODO: Implement this
-  Serial.println("LED is ON...");
 };

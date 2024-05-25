@@ -6,6 +6,7 @@
 class Led {
 private:
   byte pin;
+  byte value;
 
 public:
   Led(byte pin);
@@ -17,6 +18,11 @@ public:
   void on();
 
   void off();
+
+  void reverse();
+
+  // Only use this with Analog pins
+  void set(byte value);
 };
 
 #endif

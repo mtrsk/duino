@@ -4,6 +4,7 @@
 #include "push_button.hpp"
 #include "state.hpp"
 #include "events/button_pressed.hpp"
+#include "events/potentiometer_updated.hpp"
 #include <Arduino.h>
 #include <TaskManagerIO.h>
 
@@ -14,15 +15,17 @@ Led red(LED_RED_PIN);
 Led yellow(LED_YELLOW_PIN);
 Led green(LED_GREEN_PIN);
 
-ButtonPressedEvent buttonPressed = ButtonPressedEvent(red, button);
+ButtonPressedEvent buttonPressed = ButtonPressedEvent(yellow, button);
+PotentiometerUpdatedEvent potentiometerUpdated = PotentiometerUpdatedEvent(green, potentiometer);
 
 // Arduino Program
 void setup() {
   Serial.println("Starting Arduino...");
   state_init(red, yellow, green, button, potentiometer);
 
-  taskManager.schedule(repeatSeconds(1), []() { state_update_led_digital(red); });
+  taskManager.schedule(repeatSeconds(1), []() { red.reverse(); });
   taskManager.registerEvent(&buttonPressed);
+  taskManager.registerEvent(&potentiometerUpdated);
 }
 
 void loop() { taskManager.runLoop(); }

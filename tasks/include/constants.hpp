@@ -15,4 +15,6 @@
 
 #define SERIAL_BAUD_RATE 115200
 
+#define DEFAULT_EVENT_WAITING_IN_MS 1000L
+
 #endif
