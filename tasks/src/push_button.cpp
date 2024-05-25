@@ -26,5 +26,5 @@ void PushButton::read() {
 
 bool PushButton::isPressed() {
   PushButton::read();
-  return (state == HIGH);
+  return (this->state == HIGH);
 };

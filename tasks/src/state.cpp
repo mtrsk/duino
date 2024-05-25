@@ -36,15 +36,3 @@ void state_update_led_analog(Led &led) {
   // TODO: Implement this
   Serial.println("LED is ON...");
 };
-
-// Events
-void ButtonPressedEvent::exec() {
-  Serial.println("TODO...");
-};
-
-uint32_t ButtonPressedEvent::timeOfNextCheck() {
-  Serial.println("TODO...");
-  return millisToMicros(1000);
-};
-
-ButtonPressedEvent::ButtonPressedEvent(Led led) { this->led = led; }
