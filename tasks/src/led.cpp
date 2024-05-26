@@ -1,7 +1,10 @@
 #include "led.hpp"
 #include <Arduino.h>
 
-Led::Led(byte pin) { this->pin = pin; }
+Led::Led(byte pin, const char* name) {
+  this->pin = pin;
+  this->name = name;
+}
 
 void Led::init() {
   Serial.println("Initializing LED");
@@ -14,19 +17,20 @@ byte Led::read() {
 }
 
 void Led::on() {
-  Serial.println("LED is being turned on...");
+  Serial.print(this->name);
+  Serial.println(" LED is being turned on...");
   digitalWrite(pin, HIGH);
   this->value = HIGH;
 }
 
 void Led::off() {
-  Serial.println("LED is being turned off...");
+  Serial.print(this->name);
+  Serial.println(" LED is being turned off...");
   digitalWrite(pin, HIGH);
   this->value = LOW;
 }
 
 void Led::reverse() {
-  Serial.println("SWITCHING LED...");
   if (this->value == HIGH) {
     off();
   } else {

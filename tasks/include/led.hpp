@@ -7,9 +7,10 @@ class Led {
 private:
   byte pin;
   byte value;
+  const char* name;
 
 public:
-  Led(byte pin);
+  Led(byte pin, const char* name);
 
   void init();
 
