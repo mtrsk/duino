@@ -17,24 +17,23 @@ as of now, there's only a single `tasks` project. But I plan to add more, increa
 
 ## Building & Uploading
 
-You can either use the scripts inside the nix development shell:
-```shell
-build
-release
-upload
-```
-or `cd tasks` and use `just`:
+Run `cd` into the directory you want and use the `justfile`:
 ```shell
 just build
 just release
 just upload
 ```
 
+## Testing
+There are also unit tests into each project:
+```shell
+just test
+```
+
 ## Debugging
 
 ```shell
 just monitor
-# or monitor
 ```
 
 ## Notes
