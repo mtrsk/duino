@@ -7,8 +7,10 @@ Led::Led(byte pin, const char* name) {
 }
 
 void Led::init() {
-  Serial.println("Initializing LED");
+  Serial.print(this->name);
+  Serial.println(" LED is being setup...");
   pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
 }
 
 byte Led::read() {

@@ -9,13 +9,6 @@
 #include <TaskManagerIO.h>
 
 // Global variables
-static const char* names[] = {
-  "BUILTIN",
-  "RED",
-  "YELLOW",
-  "GREEN"
-};
-
 PushButton button(BUTTON_PIN);
 Potentiometer potentiometer(POTENTIOMETER_PIN);
 Led builtin(LED_BUILTIN, names[0]);

@@ -35,6 +35,10 @@ format:
 debug:
 	@pio debug --interface=gdb -e "{{target}}"
 
+# Runs testing suite
+test:
+    @pio test -v
+
 # Monitor the serial output
 monitor:
 	@pio device monitor -e "{{target}}"

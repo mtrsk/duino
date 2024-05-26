@@ -17,4 +17,11 @@
 
 #define DEFAULT_EVENT_WAITING_IN_MS 1000L
 
+static const char* names[] = {
+  "BUILTIN",
+  "RED",
+  "YELLOW",
+  "GREEN"
+};
+
 #endif
