@@ -2,7 +2,9 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-[![Build Project (Task)](https://github.com/mtrsk/duino/actions/workflows/build.yml/badge.svg)](https://github.com/mtrsk/duino/actions/workflows/build.yml)
+|    Project    |     Directory     |  Status   |
+| ------------- | ----------------- | --------- |
+| Tasks         | [tasks](./tasks/) | [![Build Project (Tasks)](https://github.com/mtrsk/duino/actions/workflows/build.yml/badge.svg)](https://github.com/mtrsk/duino/actions/workflows/build.yml) |
 
 Playing with arduino in C++ (and maybe Rust), platform.io and Nix. Also wanting to explore some embedded systems stuff, leveraging what I know about Nix.
 
@@ -21,7 +23,7 @@ build
 release
 upload
 ```
-or `cd state-machine` and use `just`:
+or `cd tasks` and use `just`:
 ```shell
 just build
 just release
