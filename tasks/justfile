@@ -37,7 +37,7 @@ debug:
 
 # Runs testing suite
 test:
-    @pio test -v
+    @pio test -vvv
 
 # Monitor the serial output
 monitor:

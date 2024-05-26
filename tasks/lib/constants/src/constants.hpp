@@ -1,8 +1,6 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
-#include <Arduino.h>
-
 #define LED_BUILTIN 13
 
 #define LED_RED_PIN 12
@@ -17,11 +15,6 @@
 
 #define DEFAULT_EVENT_WAITING_IN_MS 1000L
 
-static const char* names[] = {
-  "BUILTIN",
-  "RED",
-  "YELLOW",
-  "GREEN"
-};
+static const char *names[] = {"BUILTIN", "RED", "YELLOW", "GREEN"};
 
 #endif

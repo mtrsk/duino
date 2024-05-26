@@ -1,4 +1,4 @@
-#include "events/potentiometer_updated.hpp"
+#include "potentiometer_updated.hpp"
 
 PotentiometerUpdatedEvent::PotentiometerUpdatedEvent(
     Led led, Potentiometer potentiometer) {

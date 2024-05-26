@@ -1,4 +1,4 @@
-#include "events/button_pressed.hpp"
+#include "button_pressed.hpp"
 
 ButtonPressedEvent::ButtonPressedEvent(Led led, PushButton button) {
   this->led = led;

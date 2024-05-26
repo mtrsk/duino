@@ -1,7 +1,7 @@
 #include "led.hpp"
 #include <Arduino.h>
 
-Led::Led(byte pin, const char* name) {
+Led::Led(byte pin, const char *name) {
   this->pin = pin;
   this->name = name;
 }
