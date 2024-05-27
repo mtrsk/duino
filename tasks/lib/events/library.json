@@ -1,0 +1,14 @@
+{
+  "name": "events",
+  "version": "0.1.0",
+  "dependencies": [
+    {
+      "name": "constants",
+      "version": "file://lib/constants"
+    },
+    {
+      "name": "abstractions",
+      "version": "file://lib/abstractions"
+    }
+  ]
+}

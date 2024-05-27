@@ -6,9 +6,11 @@
 class Led {
 private:
   byte pin;
+  byte value;
+  const char *name;
 
 public:
-  Led(byte pin);
+  Led(byte pin, const char *name);
 
   void init();
 
@@ -17,6 +19,11 @@ public:
   void on();
 
   void off();
+
+  void reverse();
+
+  // Only use this with Analog pins
+  void set(byte value);
 };
 
 #endif

@@ -2,7 +2,9 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-[![Build Project (Task)](https://github.com/mtrsk/duino/actions/workflows/build.yml/badge.svg)](https://github.com/mtrsk/duino/actions/workflows/build.yml)
+|    Project    |     Directory     |  Status   |
+| ------------- | ----------------- | --------- |
+| Tasks         | [tasks](./tasks/) | [![Build Project (Tasks)](https://github.com/mtrsk/duino/actions/workflows/build.yml/badge.svg)](https://github.com/mtrsk/duino/actions/workflows/build.yml) |
 
 Playing with arduino in C++ (and maybe Rust), platform.io and Nix. Also wanting to explore some embedded systems stuff, leveraging what I know about Nix.
 
@@ -15,24 +17,23 @@ as of now, there's only a single `tasks` project. But I plan to add more, increa
 
 ## Building & Uploading
 
-You can either use the scripts inside the nix development shell:
-```shell
-build
-release
-upload
-```
-or `cd state-machine` and use `just`:
+Run `cd` into the directory you want and use the `justfile`:
 ```shell
 just build
 just release
 just upload
 ```
 
+## Testing
+There are also unit tests into each project:
+```shell
+just test
+```
+
 ## Debugging
 
 ```shell
 just monitor
-# or monitor
 ```
 
 ## Notes
